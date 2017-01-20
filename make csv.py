@@ -5,7 +5,7 @@ checkSet = [0,0]
 todo = []
 primes = []
 data = []
-block_size = 4
+block_size = 5
 block_count = 1	
 max_itterations = 10000
 
@@ -16,8 +16,7 @@ def getPrimes():
 		for a in range(len(lines)):
 			primes.append(int(lines[a]))
 	except Exception as e: 
-		print str(e)
-
+		print(e)
 def mathProblem(x, y):
 	smallest =  (100, 100, sys.maxint)
 	end = (input("X: "),input("Y: "))
@@ -28,7 +27,8 @@ def mathProblem(x, y):
 				smallest = ( x, y , distance )
 	return smallest
 	
-def worker((xcoord,ycoords)):
+def worker(args):
+	(xcoord,ycoords) = args
 	for y in range(len(ycoords)):
 		if xcoord - y >=0:
 			data[xcoord].append(mathProblem(xcoord,ycoords[y]))
@@ -53,7 +53,7 @@ def getNextItem():
 
 def getToDoList():
 	for a in range(max_itterations):
-		todo.append(getNextItem)
+		todo.append(getNextItem())
 	
 if __name__ == '__main__':
 	getPrimes()
